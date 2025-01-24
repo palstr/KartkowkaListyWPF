@@ -1,0 +1,54 @@
+﻿<Window x:Class="KartKupkaWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KartKupkaWPF"
+        mc:Ignorable="d"
+        Title="JakasNazwa" Height="450" Width="800">
+    <StackPanel>
+    <DataGrid
+                CanUserAddRows="True"
+                CanUserDeleteRows="False"
+                CanUserSortColumns="False"
+                RowBackground="BlueViolet"
+                AlternationCount="3"
+                AlternatingRowBackground="AliceBlue"
+                IsReadOnly="False"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding ksiazki}">
+
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="tytuł"
+                                Binding="{Binding tytul}"/>
+            <DataGridTextColumn Header="autor"
+                                Binding="{Binding autor}"/>
+            <DataGridTextColumn Header="rok wydania"
+                                Binding="{Binding rokWydania}"/>
+            <DataGridComboBoxColumn Header="kategoria"
+                                        x:Name="katCombobox"
+                                    SelectedItemBinding="{Binding kategoria}"/>
+            <DataGridCheckBoxColumn
+                    Header="Czy audiobook jest dostepny"
+                    Binding="{Binding czyAudioDostepny}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+    <UniformGrid Columns="2">
+        <Label Content="Wpisz tytuł książki"/>
+        <TextBox x:Name="tytulTextBox"/>
+            <Label Content="Wpisz autora książki"/>
+            <TextBox x:Name="autorTextBox"/>
+            <Label Content="Wybierz kategorię"/>
+        <ComboBox x:Name="kategoriaComboBox"
+                              ItemsSource="{Binding kategorie}"/>
+        <Label>Podaj rok wydania</Label>
+        <TextBox x:Name="rokTextBox"/>
+        <Label/>
+        <CheckBox x:Name="czyDostepnyCheckBox">
+            Czy audiobook jest dostępny?
+        </CheckBox>
+        <Label/>
+        <Button Click="Button_Click">Dodaj produkt do listy</Button>
+    </UniformGrid>
+</StackPanel>
+</Window>
